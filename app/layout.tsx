@@ -2,7 +2,6 @@ import type {Metadata} from "next";
 import "./globals.css";
 import React from "react";
 
-
 export const metadata: Metadata = {
   title: "Project Monitor & Expense Monitor",
   description:
