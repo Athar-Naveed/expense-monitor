@@ -6,7 +6,7 @@ export const HandleRegister = async (values: RegisterType) => {
   console.log(values);
   const resp = await axios.post(`http://localhost:3000/api`, {values});
 
-  console.log(resp);
+  console.log(`some console here: ${resp}`);
 };
 
 export const HandleLogin = async (values: RegisterType) => {
