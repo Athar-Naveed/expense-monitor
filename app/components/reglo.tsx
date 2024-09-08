@@ -1,3 +1,4 @@
+// ----------------------
 // All the imports here
 // ----------------------
 "use client";
@@ -11,6 +12,9 @@ import {HandleLogin, HandleRegister} from "../handles/HandleReglo";
 const Reglo = () => {
   const [reglo, setReglo] = useState("Login"); // Register and Login state is stored here
   const [pass, showPass] = useState(false); // Password and Show password states are stored here
+  const handlePass = () => {
+    showPass(!pass);
+  };
 
   return (
     <>
@@ -83,6 +87,7 @@ const Reglo = () => {
                     username: "",
                     email: "",
                     password: "",
+                    whatsapp: "",
                   }}
                   onSubmit={(values) => HandleRegister(values)}
                 >
@@ -91,7 +96,7 @@ const Reglo = () => {
                       Username:
                     </label>
                     <br />
-                    <Field id="userName" name="userName" placeholder="Username..." />
+                    <Field id="username" name="username" placeholder="Username..." />
                     <br />
                     <label className="name" htmlFor="email">
                       Email:
@@ -112,7 +117,7 @@ const Reglo = () => {
                       type={`${pass ? "text" : "password"}`}
                     />
                     <div>
-                      <button onClick={() => showPass(!pass)}>
+                      <button onClick={handlePass}>
                         <Image
                           alt={""}
                           height={20}
@@ -121,6 +126,15 @@ const Reglo = () => {
                         />
                       </button>
                     </div>
+                    <label htmlFor="whatsapp">Your WhatsApp (Optional):</label>
+                    <br />
+                    <Field
+                      id="whatsapp"
+                      name="whatsapp"
+                      placeholder="Your WhatsApp..."
+                      type={"number"}
+                      className="no-spinner border rounded px-3 py-2"
+                    />
                     <div className="mt-5">
                       <button
                         className="btn border border-slate-400 p-2 w-full text-center rounded-lg hover:bg-indigo-500 hover:text-slate-200"
@@ -133,7 +147,11 @@ const Reglo = () => {
                 </Formik>
               </div>
               <div className="register my-10">
-                <button className="btn text-blue-600" onClick={() => setReglo("Login")}>
+                <button
+                  type="button"
+                  className="btn text-blue-600"
+                  onClick={() => setReglo("Login")}
+                >
                   Login
                 </button>
               </div>

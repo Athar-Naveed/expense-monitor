@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .no-spinner {
+    @apply appearance-none;
+
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      @apply appearance-none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    & {
+      -moz-appearance: textfield;
+    }
+  }
+}
+
 @layer components {
   .text-format {
     @apply text-slate-400;

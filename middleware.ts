@@ -1,15 +1,20 @@
 import {NextRequest, NextResponse} from "next/server";
-
-export function middleware(request: NextRequest) {
-  const data = request.body;
-
-  console.log(`data: ${data}`);
+import {jwtVerify} from "jose";
+import {cookies} from "next/headers";
+export async function middleware(request: NextRequest) {
   const url = request.nextUrl.clone();
+  const cookie = cookies();
+  const token = cookie.get("jwtToken")?.value;
+  console.log(token);
+  if (token == undefined) {
+    console.log("first");
 
-  console.log(`url: ${url}`);
-  url.pathname = "/";
+    return NextResponse.redirect(new URL("/", url.origin));
+  }
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  const decode = await jwtVerify(token, secret);
 
-  return NextResponse.redirect(url);
+  return NextResponse.redirect(new URL(`/user/${decode.payload.username}`, url.origin));
 }
 
 export const config = {
