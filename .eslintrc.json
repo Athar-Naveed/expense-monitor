@@ -1,19 +1,26 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc.json",
   "env": {
-    "browser": false,
+    "browser": true,
     "es2021": true,
     "node": true
   },
   "extends": [
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "unused-imports", "import", "@typescript-eslint", "jsx-a11y", "prettier"],
+  "plugins": [
+    "react",
+    "unused-imports",
+    "import",
+    "@typescript-eslint",
+    "jsx-a11y",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -37,17 +44,17 @@
     "jsx-a11y/interactive-supports-focus": "warn",
     "prettier/prettier": "warn",
     "no-unused-vars": "off",
-    "unused-imports/no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "warn",
-    "object-curly-spacing": ["error", "never"],
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {
         "args": "after-used",
-        "ignoreRestSiblings": false,
+        "ignoreRestSiblings": true,
         "argsIgnorePattern": "^_.*?$"
       }
     ],
+    "unused-imports/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "object-curly-spacing": ["error", "never"],
     "import/order": [
       "warn",
       {

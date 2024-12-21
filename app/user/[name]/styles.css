@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .content {
+    @apply w-full px-2 md:ml-[15rem] lg:ml-[17rem];
+  }
+  .bills {
+    @apply mt-10 px-2 md:ml-[15rem] lg:ml-[17rem];
+  }
+  .main-head {
+    @apply mt-10;
+  }
+  .field-div {
+    @apply md:mx-5;
+  }
+  .field_label {
+    @apply text-xl text-black dark:text-violet-500;
+  }
+  .fields {
+    @apply p-4 bg-transparent border border-violet-500 focus:border-violet-500 text-slate-400 my-2 rounded;
+  }
+  option {
+    @apply bg-transparent text-black;
+  }
+}

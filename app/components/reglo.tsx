@@ -5,13 +5,16 @@
 import {Formik, Field, Form} from "formik";
 import {useState} from "react";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 
-import {HandleLogin, HandleRegister} from "../handles/HandleReglo";
+import {HandleLogin, HandleRegister} from "../handler/HandleReglo";
 // ----------------------
 
 const Reglo = () => {
   const [reglo, setReglo] = useState("Login"); // Register and Login state is stored here
   const [pass, showPass] = useState(false); // Password and Show password states are stored here
+  const [loading, isLoading] = useState(false); //
+  const route = useRouter();
   const handlePass = () => {
     showPass(!pass);
   };
@@ -30,7 +33,14 @@ const Reglo = () => {
                     email: "",
                     password: "",
                   }}
-                  onSubmit={(values) => HandleLogin(values)}
+                  onSubmit={async (values) => {
+                    isLoading(true);
+                    try {
+                      await HandleLogin(values, route);
+                    } finally {
+                      isLoading(false);
+                    }
+                  }}
                 >
                   <Form className="text-format formik-form">
                     <label className="name" htmlFor="email">
@@ -63,7 +73,7 @@ const Reglo = () => {
                         className="btn border border-slate-400 p-2 w-full text-center rounded-lg hover:bg-indigo-500 hover:text-slate-200"
                         type="submit"
                       >
-                        Login
+                        {loading ? "Logging in..." : "Login"}
                       </button>
                     </div>
                   </Form>
@@ -89,7 +99,14 @@ const Reglo = () => {
                     password: "",
                     whatsapp: "",
                   }}
-                  onSubmit={(values) => HandleRegister(values)}
+                  onSubmit={async (values) => {
+                    isLoading(true);
+                    try {
+                      await HandleRegister(values, route);
+                    } finally {
+                      isLoading(false);
+                    }
+                  }}
                 >
                   <Form className="text-format formik-form">
                     <label className="name" htmlFor="username">
@@ -129,18 +146,19 @@ const Reglo = () => {
                     <label htmlFor="whatsapp">Your WhatsApp (Optional):</label>
                     <br />
                     <Field
+                      className="no-spinner border rounded px-3 py-2"
                       id="whatsapp"
                       name="whatsapp"
                       placeholder="Your WhatsApp..."
                       type={"number"}
-                      className="no-spinner border rounded px-3 py-2"
                     />
                     <div className="mt-5">
                       <button
                         className="btn border border-slate-400 p-2 w-full text-center rounded-lg hover:bg-indigo-500 hover:text-slate-200"
+                        disabled={loading}
                         type="submit"
                       >
-                        Register
+                        {loading ? "Registering..." : "Register"}
                       </button>
                     </div>
                   </Form>
@@ -148,8 +166,8 @@ const Reglo = () => {
               </div>
               <div className="register my-10">
                 <button
-                  type="button"
                   className="btn text-blue-600"
+                  type="button"
                   onClick={() => setReglo("Login")}
                 >
                   Login

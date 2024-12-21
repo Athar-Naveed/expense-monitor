@@ -1,12 +1,10 @@
-import Link from "next/link";
-import Data from "./components/Data";
-export default async function User() {
+import MainContent from "./components/global/MainContent";
+import {Toaster} from "react-hot-toast";
+export default function User() {
   return (
     <>
-      <div className="user">
-        <h1 className="h1 text-center text-2xl text-white">User data here</h1>
-        <Data />
-      </div>
+      <Toaster />
+      <MainContent />
     </>
   );
 }

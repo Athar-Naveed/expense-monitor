@@ -1,7 +1,8 @@
 import type {Metadata} from "next";
-
-import "./globals.css";
+import "./styles.css";
 import React from "react";
+import Sidebar from "./components/global/Sidebar";
+import ReactQueryProvider from "./components/global/ReactQuery";
 export const metadata: Metadata = {
   title: "Project Monitor & Expense Monitor",
   description:
@@ -11,7 +12,12 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-white dark:bg-gray-900 block md:flex gap-5">
+        <ReactQueryProvider>
+          <Sidebar />
+          {children}
+        </ReactQueryProvider>
+      </body>
     </html>
   );
 }

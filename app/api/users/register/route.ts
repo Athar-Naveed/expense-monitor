@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
     const userData = await request.json();
 
     const cookie = cookies();
-
     // Step 3: Hash the password before saving
     const hashedPassword = await bcrypt.hash(userData.password, 10);
 
@@ -23,7 +22,7 @@ export async function POST(request: NextRequest) {
       email: userData.email,
       password: hashedPassword,
       whatsapp: userData.whatsapp,
-      role: userData.role || "admin",
+      role: userData.role || "user",
       createdAt: new Date().toISOString(),
     });
 
@@ -32,7 +31,6 @@ export async function POST(request: NextRequest) {
 
     // Step 6: Save the user to the database
     const savedUser = await newUser.save();
-    console.log("User saved:", savedUser);
 
     const token = await jwt.sign(
       {
