@@ -20,11 +20,13 @@ async function dbConnect() {
     return cached.conn;
   }
   if (!cached.promise) {
-    const opts = {
+    const mongoDBConnectionOptions = {
+      dbName: "pem", // no need to give database name
       bufferCommands: false,
+      connectTimeoutMS: 30000, // 30 seconds
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(MONGODB_URI, mongoDBConnectionOptions).then((mongoose) => {
       return mongoose;
     });
   }
