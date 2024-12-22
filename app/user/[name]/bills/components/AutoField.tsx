@@ -27,7 +27,7 @@ const AutoBillField = () => {
           }}
         >
           {() => (
-            <Form className="p-4 w-full md:w-fit md:grid lg:grid-cols-2 text-white my-5">
+            <Form className="p-4 w-full md:w-fit md:grid lg:grid-cols-3 text-white my-5">
               <div className="mb-4 md:mx-5">
                 <label className="field_label" htmlFor="billCompany">
                   Bill Company

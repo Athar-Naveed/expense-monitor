@@ -12,7 +12,7 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true); // State for sidebar toggle
   const {name} = useParams();
   const width = useWindowSize();
-
+  console.log(`active: ${active}`)
   return (
     <>
       <div className={`hidden md:relative md:flex h-full min-h-screen float-left`}>
@@ -33,7 +33,7 @@ const Sidebar = () => {
               <Link
                 key={index}
                 className={`${
-                  active == link.path ? "border-l-[5px] border-l-primary bg-primary-light" : ""
+                  active == link.path || active == `user/${name}` ? "border-l-[5px] border-l-primary bg-primary-light" : ""
                 } py-3`}
                 href={`/user/${name}/${link.path}`}
                 onClick={() => setActive(link.path)}

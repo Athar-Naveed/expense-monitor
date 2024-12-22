@@ -8,7 +8,7 @@ export default function Bills() {
           <h1 className="text-black dark:text-white text-3xl font-semibold">Bills here</h1>
         </div>
         <hr />
-        <div className="pl-0 md:pl-4">
+        <div className="">
           <ManualBillField />
           <hr />
           <AutoBillField />
